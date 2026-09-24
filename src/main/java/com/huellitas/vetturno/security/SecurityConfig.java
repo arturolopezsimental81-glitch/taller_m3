@@ -47,7 +47,10 @@ public class SecurityConfig {
                         .requestMatchers("/error").permitAll()
                         // Rutas de Swagger y OpenAPI, solo muestran documentación y no datos del negocio.
                         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/veterinarios", "/api/veterinarios/**").hasRole("ADMIN")
+                        // Consultar veterinarios es trabajo de recepción y cualquier otra
+                        // operación sobre ellos(por ahora el alta) queda solo para ADMIN.
+                        .requestMatchers(HttpMethod.GET, "/api/veterinarios/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/veterinarios/**").hasRole("ADMIN")
                         .requestMatchers("/api/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex
