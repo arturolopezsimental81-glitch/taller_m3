@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 import com.huellitas.vetturno.dto.CitaDTO;
 import com.huellitas.vetturno.dto.CitaRequest;
 import com.huellitas.vetturno.service.CitaService;
@@ -26,7 +28,7 @@ public class CitaController {
     }
 
     @PostMapping
-    public ResponseEntity<CitaDTO> agendar(@RequestBody CitaRequest request) {
+    public ResponseEntity<CitaDTO> agendar(@Valid @RequestBody CitaRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(citaService.agendar(request));
     }
 

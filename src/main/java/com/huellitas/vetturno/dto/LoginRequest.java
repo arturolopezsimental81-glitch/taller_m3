@@ -1,12 +1,16 @@
 package com.huellitas.vetturno.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * Email y contraseña para iniciar sesión.
  */
 public class LoginRequest {
 
+    @NotBlank(message = "El email es obligatorio")
     private String email;
 
+    @NotBlank(message = "La contraseña es obligatoria")
     private String password;
 
     public String getEmail() {

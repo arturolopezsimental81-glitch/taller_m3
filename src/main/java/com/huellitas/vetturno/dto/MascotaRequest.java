@@ -1,16 +1,28 @@
 package com.huellitas.vetturno.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 /**
  * Datos que se reciben para registrar una mascota, el propietario llega solo como id.
  */
 public class MascotaRequest {
 
+    @NotBlank(message = "El nombre de la mascota es obligatorio")
+    @Size(max = 60, message = "El nombre admite máximo 60 caracteres")
     private String nombre;
 
+    @NotBlank(message = "La especie es obligatoria")
+    @Size(max = 40, message = "La especie admite máximo 40 caracteres")
     private String especie;
 
+    @Size(max = 60, message = "La raza admite máximo 60 caracteres")
     private String raza;
 
+    @NotNull(message = "El propietario es obligatorio")
+    @Positive(message = "El id del propietario debe ser positivo")
     private Long propietarioId;
 
     public String getNombre() {
