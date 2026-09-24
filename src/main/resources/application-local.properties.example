@@ -4,3 +4,7 @@
 spring.datasource.url=jdbc:mysql://localhost:3306/vetturno
 spring.datasource.username=TU_USUARIO
 spring.datasource.password=TU_PASSWORD
+
+# Clave para firmar los JWT(minimo 32 caracteres aleatorios), la app no arranca con este valor
+# de ejemplo y se puede generar una con openssl rand -base64 48
+jwt.secret=CAMBIAR_POR_CLAVE_ALEATORIA
