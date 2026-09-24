@@ -45,6 +45,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
                         // Página de error de Spring, se deja pública para ver el estado real(400, 404).
                         .requestMatchers("/error").permitAll()
+                        // Rutas de Swagger y OpenAPI, solo muestran documentación y no datos del negocio.
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/veterinarios", "/api/veterinarios/**").hasRole("ADMIN")
                         .requestMatchers("/api/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated())
