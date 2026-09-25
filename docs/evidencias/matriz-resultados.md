@@ -29,7 +29,7 @@ Evidencias adicionales:
 | E1 | Evidencia parte 6: propietario con varios campos inválidos. | 400 con varios errores de campo. | 400 | Aprobada |
 | E2 | Evidencia extra: login con contraseña incorrecta. | 401 sin token. | 401 | Aprobada |
 
-Captura de Swagger UI en [swagger-ui.png](swagger-ui.png)(datos de VetTurno, botón Authorize y todos los endpoints).
+Captura de Swagger UI en Edge en [swagger-ui.png](swagger-ui.png)(datos de VetTurno y botón Authorize), las capturas de cada paso del flujo están en [capturas.md](capturas.md).
 
 ## Detalle de cada prueba
 

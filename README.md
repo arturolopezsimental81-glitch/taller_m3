@@ -245,9 +245,9 @@ java -jar target/vetturno-0.0.1-SNAPSHOT.jar
 
 ## Probar el flujo en Swagger
 
-![Swagger UI de VetTurno con la descripción de la API, el botón Authorize y los endpoints agrupados por recurso](docs/evidencias/swagger-ui.png)
+![Swagger UI de VetTurno abierto en Microsoft Edge con la descripción de la API, el botón Authorize y las primeras secciones de endpoints](docs/evidencias/swagger-ui.png)
 
-*Captura de Swagger UI donde se ve el título VetTurno API, la descripción de Veterinaria Huellitas, el botón Authorize y los 11 endpoints agrupados en Autenticación, Citas, Mascotas, Propietarios y Veterinarios.*
+*Captura de Swagger UI en Microsoft Edge(`localhost:8080/swagger-ui/index.html`) donde se ve el título VetTurno API, la descripción de Veterinaria Huellitas, el botón Authorize y las primeras secciones de endpoints, las demás capturas del flujo están en [docs/evidencias/capturas.md](docs/evidencias/capturas.md).*
 
 Los datos se crean desde la API y no desde Workbench, el orden que se siguió fue el siguiente:
 
@@ -370,7 +370,7 @@ Las respuestas a las preguntas para pensar del taller están en [docs/preguntas-
 
 ## Uso de IA
 
-Se usó IA como apoyo en los momentos que permite el taller(comprender las capas, revisar las relaciones, diagnosticar la recursión JSON, revisar las reglas de la agenda, auditar la seguridad y revisar las validaciones). Cada sugerencia se comprobó contra el comportamiento real de VetTurno mediante las pruebas unitarias, la matriz de pruebas y Swagger antes de dejarla en el proyecto.
+Se usó IA como apoyo en los momentos que permite el taller(comprender las capas, revisar las relaciones, diagnosticar la recursión JSON, revisar las reglas de la agenda, auditar la seguridad y revisar las validaciones), asimismo se usó para estructurar el README. Cada sugerencia se comprobó contra el comportamiento real de VetTurno mediante las pruebas unitarias, la matriz de pruebas y Swagger antes de dejarla en el proyecto.
 
 | Momento | Qué se consultó | Cómo se comprobó |
 |---|---|---|
@@ -380,5 +380,6 @@ Se usó IA como apoyo en los momentos que permite el taller(comprender las capas
 | Revisar la agenda | Qué casos probar para la fecha futura y el cruce de horario de un mismo veterinario. | Mediante `CitaServiceTest` junto con las pruebas 11 a 14 de la matriz(cita válida, fecha pasada, horario repetido y filtro por veterinario). |
 | Auditar seguridad | Comparar las rutas y los roles contra la regla del taller, donde recepción es para USER o ADMIN mientras que el alta de veterinarios es solo para ADMIN. | Mediante las pruebas 5 a 7 de la matriz(401 sin token, 403 con USER, 201 con ADMIN) junto con las capturas 06, 07 y 15. |
 | Revisar validaciones | Reglas que faltaban o que sobraban en los DTO de entrada. | Mediante la prueba 3 con la evidencia E1 de la matriz, también con la captura 08 donde la respuesta 400 trae un error por cada campo. |
+| Estructurar el README | Cómo organizar el README de forma profesional(orden de las secciones, tablas de endpoints y de errores, diagrama del modelo y pasos para ejecutar el proyecto) a partir de lo que pide la Parte 7 del taller. | Se revisó que cada sección corresponda a lo que pide el taller(historia, alcance, tecnologías, modelo, endpoints, roles, configuración de MySQL, orden del flujo, pruebas y errores frecuentes), que los datos coincidan con el código, asimismo que el proyecto se pueda clonar, configurar y ejecutar siguiendo el README desde cero. |
 
 Cuando una sugerencia no coincidía con lo visto en clase(por ejemplo las versiones de Spring Boot, jjwt o springdoc) se tomó como referencia el material del módulo y los apoyos visuales del curso.
