@@ -297,7 +297,7 @@ Las reglas de formato están en los DTO de entrada(Bean Validation con `@Valid`)
 
 ### Matriz de pruebas manuales
 
-La matriz se corrió contra la API real con MySQL empezando con la base vacía, el detalle de cada petición y respuesta(con los tokens ocultos) está en [docs/evidencias/matriz-resultados.md](docs/evidencias/matriz-resultados.md).
+La matriz se corrió contra la API real con MySQL empezando con la base vacía, el detalle de cada petición con su respuesta(con los tokens ocultos) está en [docs/evidencias/matriz-resultados.md](docs/evidencias/matriz-resultados.md). Las capturas del flujo en Swagger, del servidor, del árbol de paquetes y de MySQL están en [docs/evidencias/capturas.md](docs/evidencias/capturas.md).
 
 | # | Escenario | Resultado esperado | Estado HTTP obtenido | Resultado |
 |---|---|---|---|---|
