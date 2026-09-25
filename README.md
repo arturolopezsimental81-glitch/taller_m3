@@ -17,6 +17,7 @@ VetTurno es la agenda digital de **Veterinaria Huellitas**, una API REST donde s
 11. [Pruebas](#pruebas)
 12. [Errores frecuentes](#errores-frecuentes)
 13. [Decisiones y explicaciones](#decisiones-y-explicaciones)
+14. [Uso de IA](#uso-de-ia)
 
 ## Historia
 
@@ -366,3 +367,18 @@ Con `./mvnw test` se corren las pruebas de JUnit 5 y Mockito, estas pruebas no n
 **Mejora futura.** Recordatorios por WhatsApp un día antes de la cita para que falten menos pacientes, esto se quedó fuera del MVP porque depende de un servicio externo y primero se tenía que ordenar la agenda.
 
 Las respuestas a las preguntas para pensar del taller están en [docs/preguntas-para-pensar.md](docs/preguntas-para-pensar.md).
+
+## Uso de IA
+
+Se usó IA como apoyo en los momentos que permite el taller(comprender las capas, revisar las relaciones, diagnosticar la recursión JSON, revisar las reglas de la agenda, auditar la seguridad y revisar las validaciones). Cada sugerencia se comprobó contra el comportamiento real de VetTurno mediante las pruebas unitarias, la matriz de pruebas y Swagger antes de dejarla en el proyecto.
+
+| Momento | Qué se consultó | Cómo se comprobó |
+|---|---|---|
+| Comprender capas | Cómo separar controller, service y repository en VetTurno, qué señales indican que una capa hace trabajo de otra. | Se revisó que ningún controller use repositorios, que los services no tengan detalles de HTTP, también se siguió el recorrido de `POST /api/citas` de la sección de arquitectura. |
+| Revisar relaciones | La cardinalidad entre Propietario, Mascota, Veterinario y Cita, junto con el lado donde tiene que ir cada llave foránea. | Se revisó en MySQL que las llaves foráneas quedaran en `mascota` y en `cita`([esquema-mysql.md](docs/evidencias/esquema-mysql.md), capturas 16 y 19). |
+| Diagnosticar JSON | Qué relaciones o DTO revisar para que las respuestas no se vuelvan recursivas. | Se dejaron relaciones unidireccionales y DTO planos, y se revisó en Swagger que ninguna respuesta anide entidades(capturas 09 a 11). |
+| Revisar la agenda | Qué casos probar para la fecha futura y el cruce de horario de un mismo veterinario. | Mediante `CitaServiceTest` junto con las pruebas 11 a 14 de la matriz(cita válida, fecha pasada, horario repetido y filtro por veterinario). |
+| Auditar seguridad | Comparar las rutas y los roles contra la regla del taller, donde recepción es para USER o ADMIN mientras que el alta de veterinarios es solo para ADMIN. | Mediante las pruebas 5 a 7 de la matriz(401 sin token, 403 con USER, 201 con ADMIN) junto con las capturas 06, 07 y 15. |
+| Revisar validaciones | Reglas que faltaban o que sobraban en los DTO de entrada. | Mediante la prueba 3 con la evidencia E1 de la matriz, también con la captura 08 donde la respuesta 400 trae un error por cada campo. |
+
+Cuando una sugerencia no coincidía con lo visto en clase(por ejemplo las versiones de Spring Boot, jjwt o springdoc) se tomó como referencia el material del módulo y los apoyos visuales del curso.
