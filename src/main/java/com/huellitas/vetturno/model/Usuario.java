@@ -1,5 +1,8 @@
 package com.huellitas.vetturno.model;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -25,7 +28,9 @@ public class Usuario {
     @Column(nullable = false, length = 100)
     private String password;
 
+    // Se guarda como VARCHAR('USER' o 'ADMIN') y no como ENUM de MySQL.
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     @Column(nullable = false, length = 10)
     private Rol rol;
 
